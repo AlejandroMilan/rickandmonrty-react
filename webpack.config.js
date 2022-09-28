@@ -1,5 +1,6 @@
 const { resolve } = require("path");
 
+const { HotModuleReplacementPlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -15,7 +16,6 @@ const config = {
   output: {
     path: resolve(__dirname, "dist"),
     filename: "main.js",
-    publicPath: "/",
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
@@ -57,6 +57,7 @@ const config = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
+    new HotModuleReplacementPlugin(),
   ],
 };
 
