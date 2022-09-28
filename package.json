@@ -1,0 +1,19 @@
+{
+  "name": "ricandmorty-react",
+  "version": "1.0.0",
+  "description": "Frontend realizado con React para la api de Rick and Morty",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlejandroMilan/rickandmonrty-react.git"
+  },
+  "author": "Alejandro Milan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlejandroMilan/rickandmonrty-react/issues"
+  },
+  "homepage": "https://github.com/AlejandroMilan/rickandmonrty-react#readme"
+}
