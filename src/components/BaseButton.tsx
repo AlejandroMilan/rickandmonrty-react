@@ -12,7 +12,7 @@ const buttonClasses = [
   "justify-center",
 ].join(" ");
 
-const BaseButton = ({ content }: { content: any }) => (
+const BaseButton = ({ content }: { content: React.ReactNode }) => (
   <div className={buttonClasses}>{content}</div>
 );
 

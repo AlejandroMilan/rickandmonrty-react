@@ -11,7 +11,7 @@ const bannerClasses = [
   "h-64",
 ].join(" ");
 
-const TheBanner = ({ content }: { content: any }) => (
+const TheBanner = ({ content }: { content: React.ReactNode }) => (
   <div className={bannerClasses}>
     <div className="container mx-auto">{content}</div>
   </div>
