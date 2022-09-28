@@ -1,6 +1,9 @@
 const { resolve } = require("path");
+
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -12,6 +15,7 @@ const config = {
   output: {
     path: resolve(__dirname, "dist"),
     filename: "main.js",
+    publicPath: "/",
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
@@ -23,6 +27,25 @@ const config = {
         use: "babel-loader",
         exclude: /node_modules/,
       },
+      {
+        test: /\.html$/,
+        use: [{ loader: "html-loader" }],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [["postcss-preset-env"]],
+              },
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -31,12 +54,15 @@ const config = {
       filename: "index.html",
       inject: "body",
     }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    }),
   ],
 };
 
 if (isProd) {
   config.optimization = {
-    minimizer: [new TerserWebpackPlugin()],
+    minimizer: [new CssMinimizerPlugin(), new TerserWebpackPlugin()],
   };
 } else {
   config.devServer = {
