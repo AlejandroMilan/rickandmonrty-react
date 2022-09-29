@@ -12,8 +12,16 @@ const buttonClasses = [
   "justify-center",
 ].join(" ");
 
-const BaseButton = ({ content }: { content: React.ReactNode }) => (
-  <div className={buttonClasses}>{content}</div>
+const BaseButton = ({
+  content,
+  onClick,
+}: {
+  content: React.ReactNode;
+  onClick?: any;
+}) => (
+  <div className={buttonClasses} onClick={onClick}>
+    {content}
+  </div>
 );
 
 export default BaseButton;

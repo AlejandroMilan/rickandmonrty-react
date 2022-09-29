@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 
 import TheBanner from "./TheBanner";
 import SearchBar from "./SearchBar";
-import CharacterCard from "./CharacterCard";
 import CharacterList from "./CharactersList";
+import Modal from "./Modal";
 
 import { addCharacters, fetchCharacters } from "../store";
 import { useDispatch } from "react-redux";
@@ -23,7 +23,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCharacters())
+    dispatch(fetchCharacters());
   }, [dispatch]);
 
   return (

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { DateTime } from "luxon";
 
 export interface Character {
   id: number;
@@ -8,8 +9,8 @@ export interface Character {
   status: string;
   species: string;
   gender: string;
-  origin: { name: string; url: "string" };
-  location: { name: string; url: "string" };
+  origin: string;
+  location: string;
 }
 
 export const loadCharacters = async ({
@@ -22,5 +23,12 @@ export const loadCharacters = async ({
   const { data } = await axios.get("/character", {
     params: { name, page },
   });
-  return data.results;
+  return data.results.map((e: any) => {
+    return {
+      ...e,
+      origin: e.origin.name,
+      location: e.location.name,
+      created: DateTime.fromISO(e.created).setLocale("es").toLocaleString(),
+    };
+  });
 };
