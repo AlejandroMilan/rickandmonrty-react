@@ -19,5 +19,8 @@ export const loadCharacters = async ({
   name?: string;
   page?: number;
 }): Promise<Character[]> => {
-  return await axios.get("/character", { params: { name, page } });
+  const { data } = await axios.get("/character", {
+    params: { name, page },
+  });
+  return data.results;
 };
