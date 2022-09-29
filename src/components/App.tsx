@@ -5,8 +5,7 @@ import SearchBar from "./SearchBar";
 import CharacterCard from "./CharacterCard";
 import CharacterList from "./CharactersList";
 
-import { loadCharacters } from "../services/Characters.service";
-import { addCharacters } from "../store";
+import { addCharacters, fetchCharacters } from "../store";
 import { useDispatch } from "react-redux";
 
 const bannerContent = () => (
@@ -24,10 +23,8 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    loadCharacters({}).then((characters) => {
-      dispatch(addCharacters(characters));
-    });
-  }, [loadCharacters]);
+    dispatch(fetchCharacters())
+  }, [dispatch]);
 
   return (
     <div>
